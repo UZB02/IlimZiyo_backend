@@ -32,15 +32,12 @@ app.use("/api/balance", balanceRoutes);
 app.use("/api/expense", expenseRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/salaries", salaryRoutes);
-
-// Connect to DB and start server
-const PORT = process.env.PORT || 3000;
-
+// Connect to DB
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => {
-    app.listen(PORT, "0.0.0.0", () => {
-      console.log(`✅ Server ${PORT} portda ishga tushdi`);
-    });
-  })
-  .catch((err) => console.error("❌ MongoDB ulanish xatosi:", err));
+  .then(() =>
+    app.listen(process.env.PORT, () =>
+      console.log(`✅ Server ${process.env.PORT} portda ishga tushdi`)
+    )
+  )
+  .catch((err) => console.log(err));
