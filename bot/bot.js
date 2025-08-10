@@ -4,7 +4,7 @@ import Student from "../models/studentModel.js"; // modelni chaqiramiz
 
 dotenv.config();
 
-export const bot = new TelegramBot("8297536841:AAHimnbzl6Ru9u8Gvks0uhvYdX8dGOGKFwU", {
+export const bot = new TelegramBot("8320519299:AAF4oquodtjXek08RkXyGeGrBGMTAvy7Ih8", {
   polling: true,
 });
 
