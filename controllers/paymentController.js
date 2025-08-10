@@ -1,7 +1,7 @@
 import Payment from "../models/PaymentModel.js";
 import Student from "../models/studentModel.js";
 import { getOrCreateBalance } from "../utils/balanceUtils.js";
-// import { sendMessageToUser } from "../bot/bot.js"; 
+import { sendMessageToUser } from "../bot/bot.js"; 
 // 1. Yangi to‘lov qo‘shish
 export const addPayment = async (req, res) => {
   try {
@@ -62,19 +62,19 @@ export const addPayment = async (req, res) => {
     }
 
     // Agar chatId mavjud bo‘lsa — Telegramga xabar yuborish
-    // if (student.chatId) {
-    //   await sendMessageToUser(
-    //     student.chatId,
-    //     `💳 Hurmatli ${student.name}, ${student.lastname},\n` +
-    //       `${amount} so‘m to‘lov qabul qilindi.\n` +
-    //       `To‘lov usuli: ${method || "Noma'lum"}\n\n` +
-    //       `📅 Joriy oy holati:\n` +
-    //       `- Holat: ${paymentStatus.message}\n` +
-    //       `- Jami to‘langan: ${totalPaid} so‘m\n` +
-    //       `- Qolgan summa: ${paymentStatus.remainingAmount} so‘m\n` +
-    //       `- Ortiqcha to‘lov: ${paymentStatus.overpaidAmount} so‘m`
-    //   );
-    // }
+    if (student.chatId) {
+      await sendMessageToUser(
+        student.chatId,
+        `💳 Hurmatli ${student.name}, ${student.lastname},\n` +
+          `${amount} so‘m to‘lov qabul qilindi.\n` +
+          `To‘lov usuli: ${method || "Noma'lum"}\n\n` +
+          `📅 Joriy oy holati:\n` +
+          `- Holat: ${paymentStatus.message}\n` +
+          `- Jami to‘langan: ${totalPaid} so‘m\n` +
+          `- Qolgan summa: ${paymentStatus.remainingAmount} so‘m\n` +
+          `- Ortiqcha to‘lov: ${paymentStatus.overpaidAmount} so‘m`
+      );
+    }
 
     res.status(201).json({
       message: "To‘lov qo‘shildi",
