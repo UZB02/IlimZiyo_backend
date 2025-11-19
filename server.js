@@ -25,9 +25,9 @@ app.use(cors());
 app.use(express.json());
 
 // Health check route (Render health check uchun kerak)
-app.get("/", (req, res) => {
-  res.send("✅ Server ishlayapti");
-});
+// app.get("/", (req, res) => {
+//   res.send("✅ Server ishlayapti");
+// });
 
 // API routes
 app.use("/api/columns", columnRoutes);
